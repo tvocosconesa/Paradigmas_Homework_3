@@ -92,6 +92,15 @@ class ProcesadorFigura {
         static float calcular_area(const T& fig){ 
             return 0;}    
 };
+
+template <>
+class ProcesadorFigura<Punto> { 
+
+    public:
+        static float calcular_area(const Punto& fig){ 
+            return 0;}    
+};
+
 template <>
 class ProcesadorFigura<Circulo> {
 public:
