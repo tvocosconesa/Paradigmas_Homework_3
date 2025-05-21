@@ -1,6 +1,8 @@
 #include <iostream>
 #include <memory>
 #include <fstream>
+#include <cmath>
+#pragma once
 using namespace std;
 
 class Punto {
@@ -45,10 +47,10 @@ class Elipse {
         float b; // smieje menor
 
     public:
-        Elipse(float a = 1.0 , float b = 1.0 , float x = 0 , float y = 0): a(a), b(b), centro(x,y){}
+        Elipse(float sMayor = 1.0 , float sMenor = 1.0 , float x = 0 , float y = 0):  centro(x,y), a(sMayor), b(sMenor){}
 
         float get_semieje_mayor() const {return a;}
-        float get_semieje_menor(){return b;}
+        float get_semieje_menor() const {return b;}
         
         float getPosX() const { return centro.getX(); }
         float getPosY() const { return centro.getY(); }
@@ -68,6 +70,7 @@ class Rectangulo {
         float largo, ancho;
 
     public:
+        Rectangulo(float larg = 1.0, float anch = 1.0, float x = 0, float y = 0): vertice_izq(x,y), largo(larg), ancho(anch){} // el diablaso
 
         float get_largo() const { return largo; }
         float get_ancho() const { return ancho; }
@@ -76,7 +79,7 @@ class Rectangulo {
         float getPosY() const { return vertice_izq.getY(); }
 
         void set_largo(float value) { largo = value;}
-        void set_ancho(float value) { largo = value;}
+        void set_ancho(float value) { ancho = value;}
 
         void setPosX(float value) { vertice_izq.setX(value); }
         void setPosY(float value) { vertice_izq.setY(value); }
@@ -85,10 +88,30 @@ class Rectangulo {
 template <typename T>
 class ProcesadorFigura { 
 
-    protected:
-        T figura;
     public:
-        ProcesadorFigura();
+        static float calcular_area(const T& fig){ 
+            return 0;}    
+};
+template <>
+class ProcesadorFigura<Circulo> {
+public:
+    static float calcular_area(const Circulo& fig) {
+        return M_PIf * fig.getRadio() * fig.getRadio();
+    }
+};
 
-        
+template <>
+class ProcesadorFigura<Rectangulo> {
+public:
+    static float calcular_area(const Rectangulo& fig) {
+        return fig.get_largo() * fig.get_ancho();
+    }
+};
+
+template <>
+class ProcesadorFigura<Elipse> {
+public:
+    static float calcular_area(const Elipse& fig) {
+        return M_PIf * fig.get_semieje_mayor() * fig.get_semieje_menor();
+    }
 };

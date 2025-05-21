@@ -8,10 +8,10 @@ using namespace std;
 class IMediciones{
 
     public:
+       virtual ~IMediciones() = default;
        virtual void serializar(ofstream& out) const = 0;
        virtual void deserializar(ifstream& in ) = 0;
 };
-
 
 
 class MedicionBase : public IMediciones {
@@ -39,6 +39,8 @@ class MedicionBase : public IMediciones {
             return *this;
         }
 
+        virtual ~MedicionBase() = default;
+
         virtual void imprimir() const = 0;
         void serializar(ofstream& out) const override;
         void deserializar(ifstream& in ) override;
@@ -58,11 +60,11 @@ class Presion : public MedicionBase{
         : MedicionBase(other),
           presionEstatica(other.presionEstatica),
           presionDinamica(other.presionDinamica) {}
-
+        virtual ~Presion() = default;
         void serializar(ofstream& out) const override;
         void deserializar(ifstream& in ) override;
         void imprimir() const override;
-
+        
     
         Presion& operator=(const Presion& other) {  // Operador de asignación por copia
             if (this != &other) {
@@ -89,7 +91,7 @@ class Posicion : public MedicionBase {
         Posicion(const Posicion& other):
             MedicionBase(other), latitud(other.latitud), longitud(other.longitud), altitud(other.altitud){}
             
-            
+        virtual ~Posicion() = default;    
         void serializar(ofstream& out) const override;
         void deserializar(ifstream& in ) override;
         void imprimir() const override;
@@ -113,6 +115,8 @@ class SaveFlightData {
         Presion presion;
 
         SaveFlightData(const Posicion& p, const Presion& q);
+        virtual ~SaveFlightData() = default;    
+
         void serializar(ofstream& out) const;
         void deserializar(ifstream& in);
         void imprimir() const;

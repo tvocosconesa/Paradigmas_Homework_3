@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-    // Crear objetos de prueba
+    // Creo objetos de prueba
     Posicion pos(40.7128f, -74.0060f, 10.0f, 123.45f); 
     Presion pres(1013.25f, 5.8f, 123.45f);  
 

@@ -4,3 +4,8 @@ cosas por hacer:
 - hacer main para el 1 y testear que todo funcine bien ----- listori
 - hacer el ej 2
 - recomendacion opcional del 1 Agregar constructor por defecto a Presion y Posicion 
+
+
+
+PREGUNTAS:
+- esta bien que hice todo en un .h?? tipo son solamente getters y setters no tienen mas de una linea no cambian
