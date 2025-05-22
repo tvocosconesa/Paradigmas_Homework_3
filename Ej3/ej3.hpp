@@ -1,5 +1,3 @@
-// ej3.hpp
-
 #ifndef EJ3_HPP
 #define EJ3_HPP
 
