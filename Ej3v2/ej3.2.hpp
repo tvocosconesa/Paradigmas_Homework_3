@@ -18,7 +18,7 @@ class Container{
 
             Container() = default;
 
-            void agregar_datos(T& dato){
+            void agregar_datos(const T& dato){
                 datos.push_back(dato);
             }
             
@@ -69,48 +69,114 @@ class Container{
 };
 
 
-template <typename T>
+// template <typename T>
+// class JsonCreator{
+
+//     protected:
+//         vector<Container<T>> info;
+
+//     public: 
+//         JsonCreator() = default;
+
+//         void add_info(const Container<T>& cont){
+//             info.push_back(cont);
+//         }
+
+//         void create_json(){
+//             ofstream archivo("datos.json");
+//             if (!archivo.is_open()){
+//                 cerr << "ERROR:Ocurió un problema a la hora de crear el archivo Json";
+//                 return;
+//             }
+//             archivo << "{ ";
+//             for(size_t i = 0 ; i < info.size() ; i++){
+
+//                 if constexpr (is_same_v<T, string>) {
+//                     archivo << "\"palabras\":";
+                
+//                 } else if constexpr (is_same_v<T, double>) {
+//                     archivo << "\"vec_doubles\":";
+                
+//                 } else if constexpr (is_same_v<T, vector<int>>) {
+//                     archivo << C
+                
+//                 } else {
+//                     archivo << "\"desconocido\":"; // por las dudas 
+//                 }
+                
+//                 archivo << info[i].procesar_datos();
+                
+//                 if(i < info.size() - 1) archivo << ",";
+
+//             }
+
+//             archivo << "\n }";
+//             archivo.close();
+//         }
+// };
+
+
+
 class JsonCreator{
 
-    protected:
-        vector<Container<T>> info;
+    private:
+        vector<Container<double>> doubles;
+        vector<Container<string>> palabras;
+        vector<Container<vector<int>>> listas;
 
-    public: 
+
+    public:
+        
         JsonCreator() = default;
 
-        void add_info(Container<T>& cont){
-            info.push_back(cont);
-        }
+        void add_info(Container<double>& c) { doubles.push_back(c); }
+        void add_info(Container<string>& c) { palabras.push_back(c); }
+        void add_info(Container<vector<int>>& c) { listas.push_back(c); }
 
-        void create_json(){
+        void crear_Json(){
+            
             ofstream archivo("datos.json");
             if (!archivo.is_open()){
                 cerr << "ERROR:Ocurió un problema a la hora de crear el archivo Json";
                 return;
             }
             archivo << "{ ";
-            for(size_t i = 0 ; i < info.size() ; i++){
 
-                if constexpr (is_same_v<T, string>) {
-                    archivo << "\"palabras\":";
-                
-                } else if constexpr (is_same_v<T, double>) {
-                    archivo << "\"vec_doubles\":";
-                
-                } else if constexpr (is_same_v<T, vector<int>>) {
-                    archivo << "\"listas\":";
-                
-                } else {
-                    archivo << "\"desconocido\":"; // por las dudas 
+            if (!doubles.empty()){      // Para los doubles
+                archivo <<   "\"vec_doubles\":";        
+                for( size_t i = 0 ; i < doubles.size() ; i++){
+                    
+                    archivo << doubles[i].procesar_datos();         // inserto los datos del contenedor
+                    if( i < doubles.size()- 1) archivo << ",";      // en el caso de que haya mas contenedores del mismo tipo pongo una coma para luego insertar otro vector
+                }
+                archivo << ", \n";
+            }
+
+            if (!palabras.empty()){
+                archivo << "\"palabras\":";
+                for ( size_t i = 0 ; i < palabras.size() ; i++){
+
+                    archivo << palabras[i].procesar_datos();
+                    if( i < palabras.size() - 1 ) archivo << ",";
+                }
+                archivo << ", \n";
+            }
+
+            if(!listas.empty()){
+
+                archivo <<  "\"palabras\":";
+
+                for( size_t i = 0 ; i < listas.size(); i++ ){
+
+                    archivo << listas[i].procesar_datos();
+                    if( i < listas.size() - 1) archivo << ",";
                 }
                 
-                archivo << info[i].procesar_datos();
-                
-                if(i < info.size() - 1) archivo << ",";
-
             }
 
             archivo << "\n }";
-            archivo.close();
+
         }
+
+
 };
