@@ -1,4 +1,4 @@
-#include "ej3.2.hpp"
+#include "ej3.hpp"
 
 
 int main() {
@@ -8,6 +8,8 @@ int main() {
     cont_doubles.agregar_datos(d1);
     cont_doubles.agregar_datos(d2);
     cont_doubles.agregar_datos(d3);
+
+    
 
     // Container de palabras (strings)
     Container<string> cont_strings;
@@ -26,6 +28,7 @@ int main() {
     JsonCreator Jason_Voorhees;
 
 
+    Jason_Voorhees.add_info(cont_doubles);
     Jason_Voorhees.add_info(cont_doubles);
     Jason_Voorhees.add_info(cont_strings);
     Jason_Voorhees.add_info(cont_listas);
