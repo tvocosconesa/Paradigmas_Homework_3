@@ -24,13 +24,15 @@ class Container{
             
             string procesar_datos(){
                 ostringstream datos_procesados;
-                datos_procesados << "[";
+                datos_procesados << " [";
                 if constexpr (is_same_v<T, string>) {
                     
                     for (size_t i = 0; i < datos.size(); ++i) {
                         datos_procesados << "\"" << datos[i] << "\"";   // uso "\"" para agregar comillas dobles
-                    if (i != datos.size() - 1) datos_procesados << ",";
-                }
+                    
+                        if (i != datos.size() - 1) datos_procesados << ",";
+                    }
+                    datos_procesados << "]";
                 }
 
                 else if constexpr( is_same_v<T, double>){
@@ -41,16 +43,16 @@ class Container{
                         datos_procesados << fixed <<setprecision(1) << datos[i]; // fixed hace que la precision solicitada en el set precision sea aplicada a los decimales 
                         if (i != datos.size() - 1) datos_procesados << ",";
                     }
-
+                    datos_procesados << "]";
                 }
 
                 else if constexpr(is_same_v<T, vector<int>>){
 
                     for (size_t i = 0 ; i < datos.size(); i++){
-                        datos_procesados << "[";
+                        datos_procesados << "\n        [";
 
                         for (size_t j = 0 ; j < datos[i].size(); j++){
-                            datos_procesados << datos[i][j];
+                            datos_procesados << datos[i][j] ;
 
                             if(j != datos[i].size() -1 ) datos_procesados << ",";
                         }
@@ -58,12 +60,14 @@ class Container{
                         datos_procesados << "]";
                         if (i != datos.size()-1) datos_procesados << ",";
                     }
+                    datos_procesados << "\n";
+                    datos_procesados << "        ]";
                 }
 
                 else { datos_procesados << "\"Tipo no soportado\""; }
                 
                 
-                datos_procesados << "]";
+                
                 return datos_procesados.str();
             }
 };
@@ -73,18 +77,20 @@ class Container{
 class JsonCreator{
 
     private:
-        vector<Container<double>> doubles;
-        vector<Container<string>> palabras;
-        vector<Container<vector<int>>> listas;
-
+  
+        Container<double> doubles;
+        Container<string> palabras;
+        Container<vector<int>> listas;
 
     public:
         
         JsonCreator() = default;
 
-        void add_info(Container<double>& c) { doubles.push_back(c); }
-        void add_info(Container<string>& c) { palabras.push_back(c); }
-        void add_info(Container<vector<int>>& c) { listas.push_back(c); }
+
+
+        void add_info(Container<double>& c) { doubles = c; }
+        void add_info(Container<string>& c) { palabras = c; }
+        void add_info(Container<vector<int>>& c) { listas = c; }
 
         void crear_Json(){
             
@@ -95,40 +101,31 @@ class JsonCreator{
             }
             archivo << "{ ";
 
-            if (!doubles.empty()){      // Para los doubles
-                archivo <<   "\"vec_doubles\":";        
-                for( size_t i = 0 ; i < doubles.size() ; i++){
-                    
-                    archivo << doubles[i].procesar_datos();         // inserto los datos del contenedor
-                    if( i < doubles.size()- 1) archivo << ",";      // en el caso de que haya mas contenedores del mismo tipo pongo una coma para luego insertar otro vector
-                }
-                archivo << ", \n";
-            }
 
-            if (!palabras.empty()){
-                archivo << "\"palabras\":";
-                for ( size_t i = 0 ; i < palabras.size() ; i++){
-
-                    archivo << palabras[i].procesar_datos();
-                    if( i < palabras.size() - 1 ) archivo << ",";
-                }
-                archivo << ", \n";
-            }
-
-            if(!listas.empty()){
-
-                archivo <<  "\"listas\":";
-
-                for( size_t i = 0 ; i < listas.size(); i++ ){
-
-                    archivo << listas[i].procesar_datos();
-                    if( i < listas.size() - 1) archivo << ",";
-                }
-                
-            }
+            archivo << "\"vec_doubles\":";
+            archivo << doubles.procesar_datos() << "," << endl;
+            archivo << "\"palabras\":" << palabras.procesar_datos() << "," << endl;
+            archivo << "\"listas\":" << listas.procesar_datos() << endl;
 
             archivo << "\n }";
 
+        }
+
+        void leer_Json(){
+            ifstream archivo("datos.json");
+            
+            if (!archivo.is_open()) {
+                std::cerr << "No se pudo abrir el archivo.\n";
+                return;
+            }
+            
+            string linea;
+            cout << "\n";
+            while (getline(archivo, linea)) {
+                cout << linea <<endl;
+            }
+            archivo.close();
+            return ;
         }
 
 

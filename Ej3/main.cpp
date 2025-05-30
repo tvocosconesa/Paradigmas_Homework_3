@@ -28,10 +28,12 @@ int main() {
     JsonCreator Jason_Voorhees;
 
 
-    Jason_Voorhees.add_info(cont_doubles);
+    // Jason_Voorhees.add_info(cont_doubles);
     Jason_Voorhees.add_info(cont_doubles);
     Jason_Voorhees.add_info(cont_strings);
     Jason_Voorhees.add_info(cont_listas);
 
     Jason_Voorhees.crear_Json();
+    
+    Jason_Voorhees.leer_Json();
 }

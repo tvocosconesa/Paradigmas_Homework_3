@@ -2,7 +2,7 @@ cosas por hacer:
 
 - separar el ej 1 en header y source ---- listorti 
 - hacer main para el 1 y testear que todo funcine bien ----- listori
-- hacer el ej 2
+- hacer el ej 2 ----------- listorti 
 - recomendacion opcional del 1 Agregar constructor por defecto a Presion y Posicion 
 
 - en el ej 3 tengo que poner un if en la clase 2 para que en el caso de que mis vectores tengan mas de un contenedor yo pueda ponerles corchetes al principioio

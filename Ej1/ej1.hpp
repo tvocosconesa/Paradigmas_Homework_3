@@ -32,7 +32,7 @@ class MedicionBase : public IMediciones {
             tiempoMedicion = make_unique<float>(*other.tiempoMedicion);
         }
 
-        MedicionBase& operator=(const MedicionBase& other) {
+        MedicionBase& operator=(const MedicionBase& other) { // sobreescribo el operador = para usar shared pointers
             if (this != &other) {
                 tiempoMedicion = make_unique<float>(*other.tiempoMedicion);
             }
@@ -60,6 +60,7 @@ class Presion : public MedicionBase{
         : MedicionBase(other),
           presionEstatica(other.presionEstatica),
           presionDinamica(other.presionDinamica) {}
+        
         virtual ~Presion() = default;
         void serializar(ofstream& out) const override;
         void deserializar(ifstream& in ) override;
