@@ -29,7 +29,8 @@ Para solucionar esto sobreescribí el operador `=` de las clases las cuales pose
 El ejercicio constó de la creacion de distintas clases que representaban figuras geomentricas (`Circulo`, `Rectangulo` y `Elipse`).
 Estas contenian dentro de sus atributos una clase `Punto` la cual podia ser el centro de la figura, o en el caso del rectangulo su borde inferior izquierdo.
 Mediante el uso de `templates` hice las clases `ProcesadorFigura`. Estas te dan la posbilidad de calcular el area de las formas. Al usar `templates` pude reescribir la clase
-para cada figura de manera distinta, ya que con cada figura el area se calcula de una manera diferente. Las funciones de calcular area son `static`, por lo tanto funcionan como una libreria y pueden llamarse sin la necesidad de instanciarla.
+para cada figura de manera distinta, ya que con cada figura el area se calcula de una manera diferente. El area del `Punto` siempre es vva a ser 0 (pq bueno... es un punto).
+Las funciones de calcular area son `static`, por lo tanto funcionan como una libreria y pueden llamarse sin la necesidad de instanciarla.
 
 # Ejercicio 3:
 El ejercicio 3 cuenta con 2 clases, una para almacenar y procesar los datos y otra para introducir los mismos en un archivo `JSON` con sus respectivas etiquetas
@@ -39,7 +40,7 @@ Mi clase `Container` fue implementada con con un `template` para que pueda recib
 devuelve un `string` con los datos del contenedor con el formato necesario para ser introducidos e el `JSON`. Utilice condicionales
 de `constexp` para procesar de manera distinta los distintos tipos de datos pedidos en el ejercicio.
 
-### Clase 2 - JsonCreatos
-La clase `JsonCreatos` tiene como atributos a los `containers` de los `types` solicitados en el ejercicio. Los mismos son introducidos en la clase mediante el metodo `add_info()`.
+### Clase 2 - JsonCreator
+La clase `JsonCreator` tiene como atributos a los `containers` de los `types` solicitados en el ejercicio. Los mismos son introducidos en la clase mediante el metodo `add_info()`.
 La funcion `crear_Json()`, crea un archivo `JSON` e introduce los datos de los `containers`, cada uno con su respectiva etiqueta.
 Por otro lado la funcion `leer_Json()` lee el archivo creado e imprime por terminal el contenido del mismo con su respectivo formato.    

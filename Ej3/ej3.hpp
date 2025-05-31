@@ -102,7 +102,7 @@ class JsonCreator{
             archivo << "{ ";
 
 
-            archivo << "\"vec_doubles\":";
+            archivo << "\"vec_doubles\":";              // <--- etiqueta
             archivo << doubles.procesar_datos() << "," << endl;
             archivo << "\"palabras\":" << palabras.procesar_datos() << "," << endl;
             archivo << "\"listas\":" << listas.procesar_datos() << endl;

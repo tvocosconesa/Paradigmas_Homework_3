@@ -2,6 +2,9 @@
 
 int main() {
 
+    Punto punt(5.0f, 5.0f);
+    cout << "Area del punto: " << ProcesadorFigura<Punto>::calcular_area(punt) << endl;
+    
     Circulo circ(5.0f, 0.0f, 0.0f);
     cout << "Area del circulo: " << ProcesadorFigura<Circulo>::calcular_area(circ) << endl;
 

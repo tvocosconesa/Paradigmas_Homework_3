@@ -98,7 +98,7 @@ class ProcesadorFigura<Punto> {
 
     public:
         static float calcular_area(const Punto& fig){ 
-            return 0;}    
+            return fig.getX()*0;}    // no puse return 0 pq sino me tira un warning de que no estoy usando el parametro fig
 };
 
 template <>

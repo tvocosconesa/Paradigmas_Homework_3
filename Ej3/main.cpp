@@ -9,8 +9,6 @@ int main() {
     cont_doubles.agregar_datos(d2);
     cont_doubles.agregar_datos(d3);
 
-    
-
     // Container de palabras (strings)
     Container<string> cont_strings;
     string s1 = "Hola", s2 = "Mundo";
