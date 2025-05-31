@@ -38,8 +38,7 @@ class Container{
                 else if constexpr( is_same_v<T, double>){
 
                     for (size_t i = 0; i < datos.size(); i++){
-                            // datos_procesados.precision(2);
-                            // datos_procesados << fixed;
+                            
                         datos_procesados << fixed <<setprecision(1) << datos[i]; // fixed hace que la precision solicitada en el set precision sea aplicada a los decimales 
                         if (i != datos.size() - 1) datos_procesados << ",";
                     }

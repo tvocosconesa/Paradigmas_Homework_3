@@ -21,14 +21,14 @@ int main() {
     Container<vector<int>> cont_listas;
     vector<int> l1 = {1, 2};
     vector<int> l2 = {3, 4};
+    vector<int> l3 = {1,2,3};
     cont_listas.agregar_datos(l1);
     cont_listas.agregar_datos(l2);
+    cont_listas.agregar_datos(l3);
 
     
     JsonCreator Jason_Voorhees;
 
-
-    // Jason_Voorhees.add_info(cont_doubles);
     Jason_Voorhees.add_info(cont_doubles);
     Jason_Voorhees.add_info(cont_strings);
     Jason_Voorhees.add_info(cont_listas);
