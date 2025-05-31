@@ -11,12 +11,12 @@ de que el codigo no tenga warnings ni errores a la hora de compilar.
 
 # Ejercicio 1:
 
-## Clases Mediciones:
+### Clases Mediciones:
 Este ejercicio constó en la creacion de clases de distintos tipos de mediciones para aviacion, `Presion` (que almacenaba una medicion de precion dinamica y una estatica) y `Posicion` (que almacenaba la latitud, longitud, y altitud del avion). 
 Las mismas se basaban en una clase abstracta `MedicionBase`, la cual tenia como atributo del tiempo de la medicion. 
 Asimismo esta provenia de una Interfac `IMediciones`.
 
-## SaveFlightData:
+### SaveFlightData:
 Esta clase almacena los datos de medicio. Tiene como atributos una clase `Presion` y una `Posicion`. Desde la misma se puede `serializar()` y `deserializar()` su contenido e imprimir sus datos.
 
 ### Uso de unique_ptr en Medicion Base:
@@ -34,12 +34,12 @@ para cada figura de manera distinta, ya que con cada figura el area se calcula d
 # Ejercicio 3:
 El ejercicio 3 cuenta con 2 clases, una para almacenar y procesar los datos y otra para introducir los mismos en un archivo `JSON` con sus respectivas etiquetas
 
-## Clase 1 - Container : 
+### Clase 1 - Container : 
 Mi clase `Container` fue implementada con con un `template` para que pueda recibir cualquier tipo de variable. Su funcion `procesar_datos()`
 devuelve un `string` con los datos del contenedor con el formato necesario para ser introducidos e el `JSON`. Utilice condicionales
 de `constexp` para procesar de manera distinta los distintos tipos de datos pedidos en el ejercicio.
 
-## Clase 2 - JsonCreatos
+### Clase 2 - JsonCreatos
 La clase `JsonCreatos` tiene como atributos a los `containers` de los `types` solicitados en el ejercicio. Los mismos son introducidos en la clase mediante el metodo `add_info()`.
 La funcion `crear_Json()`, crea un archivo `JSON` e introduce los datos de los `containers`, cada uno con su respectiva etiqueta.
 Por otro lado la funcion `leer_Json()` lee el archivo creado e imprime por terminal el contenido del mismo con su respectivo formato.    
