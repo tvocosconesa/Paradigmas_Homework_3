@@ -25,6 +25,7 @@ class Container{
             string procesar_datos(){
                 ostringstream datos_procesados;
                 datos_procesados << " [";
+                
                 if constexpr (is_same_v<T, string>) {
                     
                     for (size_t i = 0; i < datos.size(); ++i) {
